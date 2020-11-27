@@ -1,0 +1,50 @@
+@charset "utf-8";
+/* CSS Document */
+div#head
+{
+    margin: 0 0 0 0;
+    height: 80px;
+    background-color: #999999;
+}
+div#head a
+{
+	font-size: 20px;
+	display:inline-block;
+    height: 80px;
+    width: 160px;
+    line-height: 80px;
+    padding: 0 0 0 0;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+}
+div#head a:hover
+{
+    background-color: white;
+    color: black;
+
+}
+div#head a#one
+{
+    margin-left: 50px;
+}
+div#head label
+{
+	font-size: 20px;
+	color: white;
+	height: 80px;
+	width: 100px;
+	line-height: 80px;
+	padding: 0 0 0 0;
+	text-align: center;
+}
+div#head input
+{
+	width: 75px;
+	height: 20px;
+}
+div#head button
+{
+	width: 50px;
+	height: 30px;
+}
