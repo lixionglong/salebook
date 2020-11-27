@@ -1,0 +1,320 @@
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : text1
+ Source Server Type    : MySQL
+ Source Server Version : 50731
+ Source Host           : localhost:3306
+ Source Schema         : bookshop
+
+ Target Server Type    : MySQL
+ Target Server Version : 50731
+ File Encoding         : 65001
+
+ Date: 27/11/2020 12:27:19
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for admins
+-- ----------------------------
+DROP TABLE IF EXISTS `admins`;
+CREATE TABLE `admins`  (
+  `account` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL COMMENT '管理员用户名',
+  `password` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL COMMENT '管理员密码',
+  PRIMARY KEY (`account`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of admins
+-- ----------------------------
+INSERT INTO `admins` VALUES ('aaa', '123456');
+INSERT INTO `admins` VALUES ('lxl', '10086.com');
+
+-- ----------------------------
+-- Table structure for bookinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `bookinfo`;
+CREATE TABLE `bookinfo`  (
+  `bookid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '书本ID',
+  `bookname` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `typeid` int(11) NOT NULL,
+  `author` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `publish` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `cbdate` date DEFAULT NULL,
+  `number` int(11) NOT NULL,
+  `price` float(10, 2) NOT NULL,
+  `pic` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`bookid`) USING BTREE,
+  INDEX `typeid`(`typeid`) USING BTREE,
+  CONSTRAINT `bookinfo_ibfk_1` FOREIGN KEY (`typeid`) REFERENCES `booktype` (`typeid`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of bookinfo
+-- ----------------------------
+INSERT INTO `bookinfo` VALUES (1, 'Linux操作系统', 1, '张金石', '人民邮电出版社', '2020-06-01', 102, 57.30, '1.jpg');
+INSERT INTO `bookinfo` VALUES (2, 'Python3', 1, '夏邦贵', '人民邮电出版社', '2020-07-01', 88, 31.00, '2.jpg');
+INSERT INTO `bookinfo` VALUES (3, '数据结构', 1, '严蔚敏', '电子工业出版社', '2019-08-01', 79, 43.10, '3.jpg');
+INSERT INTO `bookinfo` VALUES (4, 'JavaScript前端开发', 1, '黑马程序员', '人民邮电出版社', '2018-02-01', 98, 47.70, '4.jpg');
+INSERT INTO `bookinfo` VALUES (5, '湘行散记', 2, '沈从文', '中国友谊出版', '2019-04-01', 89, 28.60, '5.jpg');
+INSERT INTO `bookinfo` VALUES (6, '朝花夕拾', 2, '鲁迅', '台海出版社', '2017-06-01', 96, 23.40, '6.jpg');
+INSERT INTO `bookinfo` VALUES (7, '城南旧事', 2, '林海音', '台海出版社', '2017-06-01', 75, 23.40, '7.jpg');
+INSERT INTO `bookinfo` VALUES (8, '北欧神话', 2, '矛盾', '天津人民出版社', '2020-06-01', 97, 34.00, '8.jpg');
+INSERT INTO `bookinfo` VALUES (9, '古代人的日常生活', 3, '王晓燕', '江苏凤凰文艺出版社', '2020-02-10', 77, 34.90, '9.jpg');
+INSERT INTO `bookinfo` VALUES (10, '一读就上瘾的中国史', 3, '温博玲', '台海出版社', '2020-10-12', 88, 18.76, '10.jpg');
+INSERT INTO `bookinfo` VALUES (11, '人类简史', 3, '尤瓦尔赫拉利', '中信出版社', '2020-09-23', 79, 63.36, '11.jpg');
+INSERT INTO `bookinfo` VALUES (12, '全球通史', 3, '斯塔夫拉诺斯', '北京大学出版社', '2012-02-01', 69, 78.75, '12.jpg');
+INSERT INTO `bookinfo` VALUES (13, '从一到无穷大', 4, '乔治伽莫夫', '天津人民出版社', '2019-09-01', 85, 23.50, '13.jpg');
+INSERT INTO `bookinfo` VALUES (14, '公式之美', 4, '量子学派', '北京大学出版社', '2020-10-01', 87, 61.45, '14.jpg');
+INSERT INTO `bookinfo` VALUES (16, '迷人的数学', 4, '伊凡莫斯科维奇', '湖南科技出版社', '2016-08-15', 85, 38.20, '16.jpg');
+INSERT INTO `bookinfo` VALUES (17, '科学的历程', 4, '吴国胜', '湖南科技出版社', '2018-08-01', 76, 63.36, '17.jpg');
+INSERT INTO `bookinfo` VALUES (18, '美国科学育儿百科', 5, '塔尼亚', '北京科学技术出版社', '2020-09-01', 97, 54.00, '18.jpg');
+INSERT INTO `bookinfo` VALUES (20, '风声', 2, '麦家', '上海文艺出版社', '2020-10-06', 59, 59.30, '20.jpg');
+INSERT INTO `bookinfo` VALUES (21, '走遍中国', 5, '赵晓玉', '北京联合出版社', '2017-10-18', 97, 72.00, '21.jpg');
+INSERT INTO `bookinfo` VALUES (22, '中国经济2021', 5, '王德培', '中国友谊出版社', '2021-01-04', 76, 58.00, '22.jpg');
+INSERT INTO `bookinfo` VALUES (23, '5G时代', 4, '龟井卓也', '浙江人民出版社', '2019-11-10', 75, 51.60, '23.jpg');
+INSERT INTO `bookinfo` VALUES (24, '国富论', 5, '亚当-斯密', '河南大学出版商', '2020-06-07', 76, 75.70, '24.jpg');
+INSERT INTO `bookinfo` VALUES (25, '人间词话', 2, '王国维', '北京联合出版社', '2015-06-07', 74, 23.20, '25.jpg');
+INSERT INTO `bookinfo` VALUES (26, '平凡的世界', 2, '路遥', '北京十月文艺出版社', '2019-10-26', 89, 108.00, '26.jpg');
+
+-- ----------------------------
+-- Table structure for booktype
+-- ----------------------------
+DROP TABLE IF EXISTS `booktype`;
+CREATE TABLE `booktype`  (
+  `typeid` int(11) NOT NULL,
+  `typename` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`typeid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of booktype
+-- ----------------------------
+INSERT INTO `booktype` VALUES (1, '教材');
+INSERT INTO `booktype` VALUES (2, '文学');
+INSERT INTO `booktype` VALUES (3, '人文社科');
+INSERT INTO `booktype` VALUES (4, '科技');
+INSERT INTO `booktype` VALUES (5, '其他');
+
+-- ----------------------------
+-- Table structure for orders
+-- ----------------------------
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders`  (
+  `orderid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `userid` int(11) NOT NULL,
+  `bookid` int(11) NOT NULL,
+  `number` int(11) DEFAULT NULL,
+  `total` float(255, 0) DEFAULT NULL,
+  PRIMARY KEY (`orderid`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 49 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of orders
+-- ----------------------------
+INSERT INTO `orders` VALUES (1, 1, 1, 12, 687);
+INSERT INTO `orders` VALUES (7, 14, 18, 1, 54);
+INSERT INTO `orders` VALUES (14, 3, 3, 1, 43);
+INSERT INTO `orders` VALUES (15, 3, 11, 1, 63);
+INSERT INTO `orders` VALUES (16, 3, 1, 1, 57);
+INSERT INTO `orders` VALUES (17, 4, 2, 2, 58);
+INSERT INTO `orders` VALUES (19, 4, 1, 1, 57);
+INSERT INTO `orders` VALUES (20, 4, 3, 1, 43);
+INSERT INTO `orders` VALUES (23, 3, 20, 1, 59);
+INSERT INTO `orders` VALUES (24, 3, 4, 1, 48);
+INSERT INTO `orders` VALUES (34, 15, 2, 1, 30);
+INSERT INTO `orders` VALUES (36, 16, 2, 2, 60);
+INSERT INTO `orders` VALUES (37, 16, 17, 1, 63);
+INSERT INTO `orders` VALUES (41, 17, 2, 1, 30);
+INSERT INTO `orders` VALUES (44, 2, 5, 1, 29);
+INSERT INTO `orders` VALUES (45, 2, 1, 2, 114);
+INSERT INTO `orders` VALUES (46, 2, 25, 1, 23);
+INSERT INTO `orders` VALUES (47, 2, 22, 2, 116);
+
+-- ----------------------------
+-- Table structure for sale
+-- ----------------------------
+DROP TABLE IF EXISTS `sale`;
+CREATE TABLE `sale`  (
+  `saleid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `bookid` int(11) NOT NULL,
+  `number` int(11) DEFAULT NULL,
+  `saledate` date NOT NULL,
+  PRIMARY KEY (`saleid`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 31 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sale
+-- ----------------------------
+INSERT INTO `sale` VALUES (1, 1, 14, '2019-10-04');
+INSERT INTO `sale` VALUES (2, 2, 24, '2020-09-08');
+INSERT INTO `sale` VALUES (3, 3, 18, '2018-11-10');
+INSERT INTO `sale` VALUES (4, 1, 16, '2019-10-08');
+INSERT INTO `sale` VALUES (5, 2, 12, '2019-09-11');
+INSERT INTO `sale` VALUES (6, 4, 19, '2020-06-08');
+INSERT INTO `sale` VALUES (7, 2, 18, '2020-09-19');
+INSERT INTO `sale` VALUES (8, 5, 46, '2019-11-18');
+INSERT INTO `sale` VALUES (9, 2, 29, '2019-10-07');
+INSERT INTO `sale` VALUES (10, 1, 2, '2020-11-12');
+INSERT INTO `sale` VALUES (11, 2, 2, '2020-11-12');
+INSERT INTO `sale` VALUES (12, 3, 2, '2020-11-12');
+INSERT INTO `sale` VALUES (13, 3, 6, '2020-11-19');
+INSERT INTO `sale` VALUES (14, 2, 1, '2020-11-19');
+INSERT INTO `sale` VALUES (15, 13, 2, '2020-11-19');
+INSERT INTO `sale` VALUES (16, 1, 1, '2020-11-22');
+INSERT INTO `sale` VALUES (17, 2, 1, '2020-11-22');
+INSERT INTO `sale` VALUES (18, 4, 1, '2020-11-22');
+INSERT INTO `sale` VALUES (19, 6, 2, '2020-11-22');
+INSERT INTO `sale` VALUES (20, 7, 2, '2020-11-22');
+INSERT INTO `sale` VALUES (21, 9, 1, '2020-11-23');
+INSERT INTO `sale` VALUES (22, 10, 1, '2020-11-23');
+INSERT INTO `sale` VALUES (23, 2, 1, '2020-11-23');
+INSERT INTO `sale` VALUES (24, 6, 2, '2020-11-23');
+INSERT INTO `sale` VALUES (25, 1, 3, '2020-11-23');
+INSERT INTO `sale` VALUES (26, 3, 1, '2020-11-23');
+INSERT INTO `sale` VALUES (27, 1, 2, '2020-11-24');
+INSERT INTO `sale` VALUES (28, 4, 1, '2020-11-24');
+INSERT INTO `sale` VALUES (29, 1, 1, '2020-11-26');
+INSERT INTO `sale` VALUES (30, 2, 1, '2020-11-26');
+
+-- ----------------------------
+-- Table structure for usercart
+-- ----------------------------
+DROP TABLE IF EXISTS `usercart`;
+CREATE TABLE `usercart`  (
+  `userid` int(11) NOT NULL,
+  `orderid` int(11) NOT NULL,
+  PRIMARY KEY (`userid`, `orderid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of usercart
+-- ----------------------------
+INSERT INTO `usercart` VALUES (1, 1);
+INSERT INTO `usercart` VALUES (2, 44);
+INSERT INTO `usercart` VALUES (2, 45);
+INSERT INTO `usercart` VALUES (2, 46);
+INSERT INTO `usercart` VALUES (2, 47);
+INSERT INTO `usercart` VALUES (3, 14);
+INSERT INTO `usercart` VALUES (3, 15);
+INSERT INTO `usercart` VALUES (3, 16);
+INSERT INTO `usercart` VALUES (3, 23);
+INSERT INTO `usercart` VALUES (3, 24);
+INSERT INTO `usercart` VALUES (4, 17);
+INSERT INTO `usercart` VALUES (4, 19);
+INSERT INTO `usercart` VALUES (4, 20);
+INSERT INTO `usercart` VALUES (14, 7);
+INSERT INTO `usercart` VALUES (15, 34);
+INSERT INTO `usercart` VALUES (16, 36);
+INSERT INTO `usercart` VALUES (16, 37);
+INSERT INTO `usercart` VALUES (17, 41);
+
+-- ----------------------------
+-- Table structure for users
+-- ----------------------------
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users`  (
+  `userid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `username` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `password` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `sex` varchar(2) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `tel` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `zcdate` date DEFAULT NULL,
+  `addr` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`userid`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of users
+-- ----------------------------
+INSERT INTO `users` VALUES (2, 'lxl', '123456', '男', '13879860159', '2020-10-01', '东华理工大学');
+INSERT INTO `users` VALUES (3, 'wll', '123456', '女', '15779876986', '2020-09-08', '豫章师范学院');
+INSERT INTO `users` VALUES (4, 'aaa', '123456', '女', '16787654567', '2020-11-10', '东华理工大学');
+INSERT INTO `users` VALUES (5, 'bbb', '123456', '女', '16787784567', '2020-11-10', '江西师范大学');
+INSERT INTO `users` VALUES (9, 'ccc', '123456', '女', '16787784567', '2020-11-10', '江西师范大学');
+INSERT INTO `users` VALUES (10, 'eee', '123456', '男', '16787654579', '2020-11-10', '南昌航空大学');
+INSERT INTO `users` VALUES (11, 'fff', '123456', '男', '13787454577', '2020-11-10', '南昌航空大学');
+INSERT INTO `users` VALUES (12, 'ggg', '123456', '男', '16787654567', '2020-11-12', '南昌航空大学');
+INSERT INTO `users` VALUES (13, 'admin', '12345', '男', '19979416889', '2020-11-12', '东华理工大学广兰校区');
+INSERT INTO `users` VALUES (14, 'jjj', '123456', '女', '13787454577', '2020-11-22', '江西财经大学');
+INSERT INTO `users` VALUES (15, '胡赞杰', '123456', '男', '12345678911', '2020-11-22', '江西南昌');
+INSERT INTO `users` VALUES (18, ' ww7666', 'vaaaaa23@', '男', '16787654579', '2020-11-26', '南昌航空大学');
+INSERT INTO `users` VALUES (20, 'aaa73', '1a1a1a1a1a', '男', '15979353497', '2020-11-26', '南昌航空大学');
+INSERT INTO `users` VALUES (21, 'aaa1', '1234567', '男', '15979253497', '2020-11-26', '南昌航空大学');
+INSERT INTO `users` VALUES (22, 'aaa2', '1234567', '男', '13787454577', '2020-11-26', '南昌航空大学');
+INSERT INTO `users` VALUES (23, 'aaab', '1234fhgf', '男', '13879861111', '2020-11-26', '东华理工大学');
+INSERT INTO `users` VALUES (24, 'zzz', '111111', '男', '13456725069', '2020-11-26', 'zzzzzzzzzz');
+
+-- ----------------------------
+-- View structure for bookinfo_view
+-- ----------------------------
+DROP VIEW IF EXISTS `bookinfo_view`;
+CREATE ALGORITHM = UNDEFINED DEFINER = `lxl`@`localhost` SQL SECURITY DEFINER VIEW `bookinfo_view` AS select `bookinfo`.`bookid` AS `bookid`,`bookinfo`.`bookname` AS `bookname`,`bookinfo`.`typeid` AS `typeid`,`bookinfo`.`author` AS `author`,`bookinfo`.`publish` AS `publish`,`bookinfo`.`cbdate` AS `cbdate`,`bookinfo`.`number` AS `number`,`bookinfo`.`price` AS `price`,`bookinfo`.`pic` AS `pic` from `bookinfo`;
+
+-- ----------------------------
+-- View structure for booktype_view
+-- ----------------------------
+DROP VIEW IF EXISTS `booktype_view`;
+CREATE ALGORITHM = UNDEFINED DEFINER = `lxl`@`localhost` SQL SECURITY DEFINER VIEW `booktype_view` AS select `bookinfo`.`bookname` AS `bookname`,`booktype`.`typename` AS `typename` from (`bookinfo` join `booktype`) where (`bookinfo`.`typeid` = `booktype`.`typeid`);
+
+-- ----------------------------
+-- View structure for book_stock
+-- ----------------------------
+DROP VIEW IF EXISTS `book_stock`;
+CREATE ALGORITHM = UNDEFINED DEFINER = `lxl`@`localhost` SQL SECURITY DEFINER VIEW `book_stock` AS select `bookinfo`.`bookid` AS `bookid`,`bookinfo`.`bookname` AS `bookname`,`bookinfo`.`number` AS `number` from `bookinfo`;
+
+-- ----------------------------
+-- Procedure structure for lookup_usecart
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `lookup_usecart`;
+delimiter ;;
+CREATE DEFINER=`lxl`@`localhost` PROCEDURE `lookup_usecart`(in r_userid int)
+begin
+	select bookname as '书名',sum(orders.number) as '总数',sum(orders.total) as '总价格'
+	 from usercart,bookinfo,orders
+	 where usercart.userid=r_userid and orders.userid=r_userid and usercart.userid=orders.userid
+	 and usercart.orderid=orders.orderid
+	 and orders.bookid=bookinfo.bookid
+	 group by bookname
+	 order by sum(orders.total) desc;
+end
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for sale_rank
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `sale_rank`;
+delimiter ;;
+CREATE DEFINER=`lxl`@`localhost` PROCEDURE `sale_rank`(in r_year int,in r_month int)
+begin
+	select bookname as '书名',sum(sale.number) as '总数'
+	from sale,bookinfo
+	where (sale.bookid=bookinfo.bookid) and (r_year=YEAR(sale.saledate)) 
+	and (r_month=MONTH(sale.saledate))
+	group by bookname
+	order by sum(sale.number) desc;									
+end
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for sale_total_rank
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `sale_total_rank`;
+delimiter ;;
+CREATE DEFINER=`lxl`@`localhost` PROCEDURE `sale_total_rank`()
+begin
+	select bookname as '书名',sum(sale.number) as '总数'
+	from bookinfo,sale
+	where bookinfo.bookid=sale.bookid
+	group by bookname
+	order by sum(sale.number) desc;
+end
+;;
+delimiter ;
+
+SET FOREIGN_KEY_CHECKS = 1;
